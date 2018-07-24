@@ -2,14 +2,12 @@
 
 /**
  * Class WP_EXT_Widget_Theme
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 class WP_EXT_Widget_Theme extends WP_EXT_Widget {
 
 	/**
 	 * Constructor.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -18,8 +16,7 @@ class WP_EXT_Widget_Theme extends WP_EXT_Widget {
 
 	/**
 	 * Plugin: `initialize`.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function run() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_style' ], 92 );
 		add_filter( 'body_class', [ $this, 'body_class' ] );
@@ -27,8 +24,7 @@ class WP_EXT_Widget_Theme extends WP_EXT_Widget {
 
 	/**
 	 * Enqueue style.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function enqueue_style() {
 		if ( ! is_admin() ) {
 			wp_enqueue_style( 'ext-plugin-' . $this->domain_ID, plugins_url( 'themes/styles/theme.css', __DIR__ ), [], '' );
@@ -39,8 +35,7 @@ class WP_EXT_Widget_Theme extends WP_EXT_Widget {
 	 * Body class.
 	 *
 	 * @return array
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function body_class( $classes ) {
 		if ( ! is_admin() ) {
 			$classes[] = 'ext-plugin-' . $this->domain_ID;
@@ -54,8 +49,7 @@ class WP_EXT_Widget_Theme extends WP_EXT_Widget {
  * Helper function to retrieve the static object without using globals.
  *
  * @return WP_EXT_Widget_Theme
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 function WP_EXT_Widget_Theme() {
 	static $object;
 
@@ -68,6 +62,5 @@ function WP_EXT_Widget_Theme() {
 
 /**
  * Initialize the object on `plugins_loaded`.
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 add_action( 'plugins_loaded', [ WP_EXT_Widget_Theme(), 'run' ] );

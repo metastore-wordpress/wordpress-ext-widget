@@ -19,7 +19,7 @@
 
 /**
  * Loading `WP_EXT_Widget`.
- * ------------------------------------------------------------------------------------------------------------------ */
+ */
 
 function run_wp_ext_widget() {
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/WP_EXT_Widget.class.php' );

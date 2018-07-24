@@ -2,22 +2,19 @@
 
 /**
  * Class WP_EXT_Widget_ChildPage
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 class WP_EXT_Widget_ChildPage extends WP_Widget {
 
 	/**
 	 * Textdomain used for translation.
 	 *
 	 * @var string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private $domain_ID;
 
 	/**
 	 * Constructor. Register widget with WordPress.
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function __construct() {
 		$this->domain_ID = 'child-page';
 
@@ -40,20 +37,17 @@ class WP_EXT_Widget_ChildPage extends WP_Widget {
 	 *
 	 * @param array $args
 	 * @param array $instance
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function widget( $args, $instance ) {
 
 		/**
 		 * Options.
-		 * ---------------------------------------------------------------------------------------------------------- */
-
+		 */
 		$title = esc_html__( 'Страницы', 'wp-ext-' . $this->domain_ID );
 
 		/**
 		 * Rendering data.
-		 * ---------------------------------------------------------------------------------------------------------- */
-
+		 */
 		if ( self::child_page_list() ) {
 			echo $args['before_widget'] . $args['before_title'] . $title . $args['after_title'];
 			echo self::child_page_list();
@@ -69,8 +63,7 @@ class WP_EXT_Widget_ChildPage extends WP_Widget {
 	 * @param array $instance The widget options.
 	 *
 	 * @return string|void
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function form( $instance ) {
 	}
 
@@ -83,8 +76,7 @@ class WP_EXT_Widget_ChildPage extends WP_Widget {
 	 * @param array $old_instance The previous options.
 	 *
 	 * @return array|void
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function update( $new_instance, $old_instance ) {
 	}
 
@@ -92,8 +84,7 @@ class WP_EXT_Widget_ChildPage extends WP_Widget {
 	 * Render `child_page_list`.
 	 *
 	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public function child_page_list() {
 		global $post;
 
@@ -129,14 +120,12 @@ class WP_EXT_Widget_ChildPage extends WP_Widget {
 
 /**
  * Register the widget.
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 function WP_EXT_Widget_ChildPage_Register() {
 	register_widget( 'WP_EXT_Widget_ChildPage' );
 }
 
 /**
  * Initialize on `widgets_init`.
- * ------------------------------------------------------------------------------------------------------------------ */
-
+ */
 add_action( 'widgets_init', 'WP_EXT_Widget_ChildPage_Register' );
